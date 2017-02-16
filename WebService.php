@@ -7,94 +7,81 @@
  * Project Name : Codeigniter Webservice library
  */
 
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 class CI_WebService extends CI_Loader
 {
-
     private $data;
 
-    public function getData($data){
-        if(gettype($data)=='array') {
+    public function getData($data)
+    {
+        if (gettype($data) == 'array') {
             $this->data = $data;
             // die(var_dump($data));
             return $data;
-        }
-        else{
+        } else {
             exit('Array is allowed');
         }
-
     }
 
-
-    public function json(){
+    public function json()
+    {
         return json_encode($this->data);
-
     }
 
-    public function Xml($node){
+    public function Xml($node)
+    {
         header('Content-Type: application/xml'); //Output Format
 
-        print('<?xml version="1.0"?>'); //Xml syntax
-        print('<'.$node.'>');//Open Node
+        echo '<?xml version="1.0"?>'; //Xml syntax
+        echo '<'.$node.'>'; //Open Node
 
-        for($i=0;$i<count($this->data);$i++) {
-
+        for ($i = 0; $i < count($this->data); $i++) {
             list($Key, $Value) = each($this->data[$i]); //Get Key
-            print('<'.$Key.$i.'>'); //Create Parent
+            echo '<'.$Key.$i.'>'; //Create Parent
             foreach ($this->data[$i] as $k => $v) {
-
                 if ($k != '') {
-                    print('<' . $k . '>'); //Create Child Node
-                    print($v); //Child Value
-                    print('</' . $k . '>');
+                    echo '<'.$k.'>'; //Create Child Node
+                    echo $v; //Child Value
+                    echo '</'.$k.'>';
                 } else {
-                    die("Array Format is not Allowed"); //Wrong Format
+                    die('Array Format is not Allowed'); //Wrong Format
                 }
             }
-            print('</'.$Key.$i.'>'); //Parent Close
+            echo '</'.$Key.$i.'>'; //Parent Close
         }
-        print('</'.$node.'>'); //Node Close
+        echo '</'.$node.'>'; //Node Close
     }
 
-
-    public function Rss($info){
+    public function Rss($info)
+    {
         header('Content-Type: application/xml'); //Output Format
 
-        print('<?xml version="1.0"?><rss version="2.0"><channel>'); //RSS Syntax
-        foreach($info as $key=>$val) {
+        echo '<?xml version="1.0"?><rss version="2.0"><channel>'; //RSS Syntax
+        foreach ($info as $key=>$val) {
             //  die(var_dump($val));
-            print('<'.$key.'>');
-            print(htmlentities($val));
-            print('</'.$key.'>');
+            echo '<'.$key.'>';
+            echo htmlentities($val);
+            echo '</'.$key.'>';
         }
-        for($i=0;$i<count($this->data);$i++) {
-
+        for ($i = 0; $i < count($this->data); $i++) {
             list($Key, $Value) = each($this->data[$i]); //Get Key
-            print('<item>'); //Create Parent
+            echo '<item>'; //Create Parent
             foreach ($this->data[$i] as $k => $v) {
-
                 if ($k != '') {
-                    print('<' . $k . '>'); //Create Child Node
-                    print($v); //Child Value
-                    print('</' . $k . '>');
+                    echo '<'.$k.'>'; //Create Child Node
+                    echo $v; //Child Value
+                    echo '</'.$k.'>';
                     /* print('<title>RSS Tutorial</title>
                             <link>http://www.w3schools.com/xml/xml_rss.asp</link>
                             <description>New RSS tutorial on W3Schools</description>
            ');**/
                 } else {
-                    die("Array Format is not Allowed"); //Wrong Format
+                    die('Array Format is not Allowed'); //Wrong Format
                 }
             }
-            print('</item>'); //Parent Close
+            echo '</item>'; //Parent Close
         }
 
-        print('</channel></rss>'); //Close Rss
-
+        echo '</channel></rss>'; //Close Rss
     }
-
-
-
-
 }
-
-?>
