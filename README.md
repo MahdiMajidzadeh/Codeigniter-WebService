@@ -12,6 +12,7 @@ open your controller and paste this function in it<br/>
 <code> <pre>
    public function service()
      {
+     $this->load->library(array('webservice'));
       $data=array();
       for($i=0;$i<100;$i++){
           $data[$i]["Random"]=rand(0,1000);
