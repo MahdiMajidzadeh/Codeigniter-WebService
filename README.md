@@ -1,15 +1,18 @@
 # Codeigniter-WebService
 
-Webservice library is a Codeigniter Class that let you to make  json and xml webservices + RSS</br>
+[![StyleCI](https://styleci.io/repos/82162409/shield?branch=master)](https://styleci.io/repos/82162409)
+
+Webservice library is a Codeigniter Class that let you to make  json and xml webservices + RSS
 
 its very simple and easy to use . 
 <br/>
 
-<h1> How to install codeigniter Webservice? </h1>
-downlaod Webserivce from git and paste file in ypur codeigniter libraries folder , <br/>
-open your controller and paste this function in it<br/>
+## How to install codeigniter Webservice?
+downlaod Webserivce from git and paste file in ypur codeigniter libraries folder ,
 
-<code> <pre>
+open your controller and paste this function in it
+
+```
    public function service()
      {
      $this->load->library(array('webservice'));
@@ -37,5 +40,4 @@ open your controller and paste this function in it<br/>
        );
        echo $this->webservice->Rss($info);
    }
-   </pre>
-  </code>
+```
